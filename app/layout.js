@@ -9,9 +9,7 @@ const cardo = Cardo({ subsets: ["latin"], weight: ["400", "700"], style: ["norma
 const jost = Jost({ subsets: ["latin"], weight: ["300", "400", "500"], variable: "--font-jost" });
 const zen = Zen_Kaku_Gothic_New({ subsets: ["latin"], weight: ["400", "500", "700"], variable: "--font-zen" });
 
-const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "http://localhost:3000";
+const siteUrl = "https://olawaledecorations.vercel.app";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
