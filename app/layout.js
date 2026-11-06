@@ -1,11 +1,24 @@
-import { Jost, Inter } from "next/font/google";
+import { Cardo, Jost, Zen_Kaku_Gothic_New } from "next/font/google";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Loader from "@/components/Loader";
+import Reveal from "@/components/Reveal";
 import "./globals.css";
 
-const jost = Jost({ subsets: ["latin"], variable: "--font-jost", weight: ["400", "500", "600", "700"] });
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const cardo = Cardo({ subsets: ["latin"], weight: ["400", "700"], style: ["normal", "italic"], variable: "--font-cardo" });
+const jost = Jost({ subsets: ["latin"], weight: ["300", "400", "500"], variable: "--font-jost" });
+const zen = Zen_Kaku_Gothic_New({ subsets: ["latin"], weight: ["400", "500", "700"], variable: "--font-zen" });
+
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "http://localhost:3000";
 
 export const metadata = {
-  title: "Olawale Decorations Ltd. | Interior & Exterior Designing in Abeokuta",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Olawale Decorations Ltd. | Interior & Exterior Designing in Abeokuta",
+    template: "%s | Olawale Decorations Ltd.",
+  },
   description:
     "POP ceilings, lighting design, mirror walls, chandeliers and full interior and exterior finishing by Olawale Decorations Ltd., Abeokuta, Ogun State.",
   openGraph: {
@@ -17,8 +30,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${jost.variable} ${inter.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${cardo.variable} ${jost.variable} ${zen.variable}`}>
+      <body>
+        <Loader />
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <Reveal />
+      </body>
     </html>
   );
 }

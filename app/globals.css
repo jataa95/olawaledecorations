@@ -1,62 +1,108 @@
 @import "tailwindcss";
 
 @theme {
+  --color-ink: #202020;
+  --color-ink-dark: #0f0f0f;
+  --color-ink-light: #4a4a4a;
+  --color-body: #333333;
+  --color-muted: #757575;
+  --color-sand: #f2ede7;
+  --color-sand-2: #e9e1da;
+  --color-stone: #d8d0c5;
+  --color-taupe: #ad8a72;
+  --color-taupe-dark: #5f433e;
+  --color-taupe-light: #d6b996;
+  --color-olive: #6b705c;
   --color-brand-blue: #1f2c86;
-  --color-brand-navy: #141a4a;
   --color-brand-red: #e0352b;
-  --color-ink: #16182b;
-  --color-mist: #f3f5fb;
-  --font-heading: var(--font-jost), "Futura", sans-serif;
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --spacing-18: 4.5rem;
+  --font-display: var(--font-cardo), Georgia, serif;
+  --font-en: var(--font-jost), sans-serif;
+  --font-sans: var(--font-zen), "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+  --radius-card: 12px;
 }
 
 html {
+  /* Left edge of the 1280px container, for full-bleed rows that line up with it */
+  --edge: max(1.25rem, calc((100vw - 1280px) / 2 + 2.5rem));
   scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: 6rem;
 }
 
 body {
-  @apply bg-white font-sans text-ink antialiased;
+  @apply bg-white font-sans text-[15px] leading-[1.9] tracking-[0.04em] text-body antialiased sm:text-base;
+}
+
+a, button, svg {
+  transition: all 0.4s ease-out;
 }
 
 @utility container-x {
-  @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  @apply mx-auto w-full max-w-[1280px] px-5 sm:px-10;
 }
 
 @utility section {
-  @apply py-20 sm:py-28;
+  @apply py-24 sm:py-36 lg:py-48;
 }
 
-@utility eyebrow {
-  @apply text-xs font-semibold uppercase tracking-[0.25em] text-brand-red;
+/* Beige section with paper texture, as in the reference */
+@utility bg-paper {
+  background-color: var(--color-sand);
+  background-image: url("/textures/paper.png");
+  background-size: 256px;
+  background-blend-mode: multiply;
 }
 
+@utility bg-paper-2 {
+  background-color: var(--color-sand-2);
+  background-image: url("/textures/paper.png");
+  background-size: 256px;
+  background-blend-mode: multiply;
+}
+
+/* Small English label above headings */
+@utility label-en {
+  @apply font-en text-xs font-medium uppercase tracking-[0.25em] text-taupe;
+}
+
+/* Rounded pill buttons */
 @utility btn {
-  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold transition-all disabled:cursor-not-allowed disabled:opacity-50;
+  @apply inline-flex items-center justify-between gap-6 rounded-full border px-7 py-4 text-sm tracking-[0.08em];
 }
 
-@utility btn-red {
-  @apply bg-brand-red text-white hover:bg-brand-red/90 hover:shadow-lg hover:shadow-brand-red/25;
+@utility btn-dark {
+  @apply border-ink bg-ink text-white hover:bg-transparent hover:text-ink;
 }
 
-@utility btn-ghost {
-  @apply border border-white/40 text-white hover:bg-white hover:text-ink;
+@utility btn-line {
+  @apply border-ink/30 text-ink hover:border-ink hover:bg-ink hover:text-white;
 }
 
-@utility input {
-  @apply rounded-lg border border-black/10 bg-mist px-4 py-3 text-base font-normal outline-none transition focus:border-brand-blue focus:bg-white;
+@utility btn-light {
+  @apply border-white/60 text-white hover:bg-white hover:text-ink;
 }
 
-@keyframes marquee {
-  to { transform: translateX(-50%); }
+/* Scroll reveal: fade + slide up over 0.6s */
+.js-slideup {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.js-slideup.is-in {
+  opacity: 1;
+  transform: none;
 }
 
-.marquee {
-  animation: marquee 30s linear infinite;
+@keyframes kenburns {
+  from { transform: scale(1.12); }
+  to { transform: scale(1); }
+}
+
+.kenburns {
+  animation: kenburns 7s ease-out both;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .marquee { animation: none; }
+  .js-slideup { opacity: 1; transform: none; transition: none; }
+  .kenburns { animation: none; }
 }

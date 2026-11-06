@@ -1,274 +1,260 @@
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, MapPin, Phone, Mail, BadgeCheck } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Logo from "@/components/Logo";
-import Gallery from "@/components/Gallery";
-import ContactForm from "@/components/ContactForm";
-import SectionHeading from "@/components/SectionHeading";
-import { site, nav, services, gallery, process, stats } from "@/data/site";
-
-const marqueeItems = ["POP Ceilings", "Track Lighting", "LED Coves", "Mirror Walls", "Chandeliers", "Interior Fit-outs", "Exterior Finishing"];
+import Link from "next/link";
+import HeroSlider from "@/components/HeroSlider";
+import Heading from "@/components/Heading";
+import ServicesSlider from "@/components/ServicesSlider";
+import ContactBlock from "@/components/ContactBlock";
+import Arrow from "@/components/Arrow";
+import { site, philosophy, works, onsite, news, process } from "@/data/site";
 
 export default function Home() {
+  const featured = works.slice(0, 5);
+
   return (
     <>
-      <Navbar />
-      <main id="top">
-        {/* HERO */}
-        <section className="relative flex min-h-svh items-end overflow-hidden bg-brand-navy pb-16 pt-32 sm:items-center sm:pb-0">
-          <div className="absolute inset-0 lg:left-auto lg:w-[46%]">
-            <Image
-              src="/images/living-hall-3.webp"
-              alt="Finished living hall with layered POP ceiling, LED lighting and a crystal chandelier"
-              fill
-              preload
-              sizes="(min-width: 1024px) 46vw, 100vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/70 to-brand-navy/30 lg:bg-gradient-to-r lg:from-brand-navy lg:via-brand-navy/20 lg:to-transparent" />
-          </div>
-          <div className="container-x relative">
-            <div className="max-w-2xl">
-              <p className="eyebrow text-white/80">
-                <span className="text-brand-red">●</span>&nbsp; Interior & Exterior Designing
-              </p>
-              <h1 className="mt-5 font-heading text-4xl font-bold leading-[1.05] text-white sm:text-6xl lg:text-7xl">
-                Ceilings, light &amp; finishes that make a space feel <span className="text-brand-red">complete.</span>
-              </h1>
-              <p className="mt-6 max-w-xl text-lg text-white/80">
-                From POP ceilings and track lighting to mirror walls and chandeliers, we design and build interiors that look as good in person as they do in photos.
-              </p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <a href="#contact" className="btn btn-red">
-                  Get a free quote <ArrowRight size={18} />
-                </a>
-                <a href="#projects" className="btn btn-ghost">
-                  See our work
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+      {/* HERO */}
+      <section className="relative h-svh min-h-[560px] text-white">
+        <HeroSlider />
+        <div className="container-x relative flex h-full flex-col justify-end pb-24 sm:pb-28">
+          <h1 className="font-display text-[2.15rem] leading-[1.3] sm:text-6xl lg:text-7xl">
+            Step into the space
+            <br />
+            you’ve been picturing.
+          </h1>
+          <p className="mt-8 font-en text-sm tracking-[0.2em]">INTERIOR &amp; EXTERIOR DESIGNING · ABEOKUTA</p>
+          <p className="mt-3 max-w-lg text-sm text-white/85 sm:text-base">
+            We give shape to the ideas you haven’t put into words yet.
+          </p>
+        </div>
+        <div className="absolute bottom-0 left-5 flex flex-col items-center gap-3 sm:left-10" aria-hidden="true">
+          <span className="font-en text-[10px] tracking-[0.3em] [writing-mode:vertical-rl]">SCROLL</span>
+          <span className="h-14 w-px bg-white/60" />
+        </div>
+      </section>
 
-        {/* MARQUEE */}
-        <div className="overflow-hidden bg-brand-red py-4 text-white" aria-hidden="true">
-          <div className="marquee flex w-max gap-10 whitespace-nowrap font-heading text-lg font-semibold uppercase tracking-wider">
-            {[...marqueeItems, ...marqueeItems].map((t, i) => (
-              <span key={i} className="flex items-center gap-10">
-                {t} <span className="text-white/50">✦</span>
-              </span>
+      {/* PHILOSOPHY */}
+      <section id="philosophy" className="section bg-paper">
+        <div className="container-x">
+          <p className="label-en js-slideup">Philosophy</p>
+          <h2 className="js-slideup mt-6 font-display text-[2rem] leading-[1.4] text-ink sm:text-5xl lg:text-6xl">
+            Not just answering the brief.
+            <br />
+            Going beyond it.
+          </h2>
+          <p className="js-slideup mt-8 max-w-2xl text-ink-light">
+            A ceiling is more than a surface and a light is more than a fitting. We look at how a room will be lived in, then
+            design the ceiling, the light and the finish to fit, sometimes in ways you hadn’t pictured yet.
+          </p>
+
+          <div className="mt-20 space-y-20 sm:mt-28 sm:space-y-28">
+            {philosophy.map((p, i) => (
+              <article key={p.no} className={`grid items-center gap-10 md:grid-cols-2 md:gap-20 ${i % 2 ? "md:[&>*:first-child]:order-2" : ""}`}>
+                <div className="js-slideup relative aspect-[4/3] overflow-hidden rounded-[12px]">
+                  <Image src={p.image} alt="" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+                </div>
+                <div className="js-slideup">
+                  <p className="font-en text-6xl font-light text-taupe sm:text-7xl">{p.no}</p>
+                  <h3 className="mt-4 font-display text-3xl text-ink sm:text-4xl">{p.title}</h3>
+                  <p className="mt-6 text-ink-light">{p.text}</p>
+                </div>
+              </article>
             ))}
+          </div>
+
+          <div className="js-slideup mt-20 flex flex-col gap-4 sm:mt-28 sm:flex-row sm:justify-center">
+            <Link href="/#company" className="btn btn-line sm:w-72">About us <Arrow /></Link>
+            <Link href="/#contact" className="btn btn-dark sm:w-72">Book a free consultation <Arrow /></Link>
           </div>
         </div>
+      </section>
 
-        {/* ABOUT */}
-        <section id="about" className="section">
-          <div className="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-            <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
-                <Image src="/images/founder.webp" alt="Portrait from the Olawale Decorations team" fill sizes="(min-width: 1024px) 45vw, 90vw" className="object-cover object-top" />
-              </div>
-              <div className="absolute -bottom-6 -right-2 rounded-2xl bg-brand-blue px-6 py-5 text-white shadow-xl sm:-right-6">
-                <p className="font-heading text-2xl font-bold">RC {site.rcNumber}</p>
-                <p className="text-sm text-white/75">Registered company</p>
-              </div>
-            </div>
-            <div>
-              <SectionHeading
-                eyebrow="About us"
-                title="We turn bare walls and ceilings into rooms people remember."
-              />
-              <div className="-mt-6 space-y-4 text-lg text-ink/70">
-                <p>
-                  Olawale Decorations Ltd. is an interior and exterior design company based in Abeokuta, Ogun State. We specialise in the details that change how a room feels: the ceiling, the lighting and the finishes.
-                </p>
-                <p>
-                  Our own crew handles every stage on site, from the first POP board to the last light fitting, so the finished room matches the plan.
-                </p>
-              </div>
-              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-                {["Design and build in one team", "Clean, tidy job sites", "Lighting planned with the ceiling", "Homes, offices and estates"].map((t) => (
-                  <li key={t} className="flex items-center gap-2.5 font-medium">
-                    <BadgeCheck className="shrink-0 text-brand-red" size={20} /> {t}
-                  </li>
-                ))}
-              </ul>
+      {/* WORKS */}
+      <section id="works" className="section">
+        <div className="container-x">
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <Heading en="Works" label="Our projects" />
+            <div className="js-slideup max-w-md">
+              <p className="text-ink-light">
+                Ceilings, lighting and feature walls from recent homes in and around Abeokuta. Every one designed for its own space.
+              </p>
+              <Link href="/works" className="mt-6 inline-flex items-center gap-4 border-b border-ink pb-1 text-sm text-ink hover:gap-6">
+                View all works <Arrow />
+              </Link>
             </div>
           </div>
-        </section>
 
-        {/* SERVICES */}
-        <section id="services" className="section bg-mist">
-          <div className="container-x">
-            <SectionHeading
-              eyebrow="What we do"
-              title="Everything a finished interior needs"
-              text="One team for the ceiling, the lighting and the feature walls, so it all fits together."
-            />
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map((s, i) => (
-                <article key={s.title} className="group overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-xl hover:shadow-brand-blue/10">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image src={s.image} alt="" fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 font-heading text-sm font-bold text-brand-blue">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
+          <div className="mt-16 grid gap-6 sm:mt-20 md:grid-cols-12 md:gap-8">
+            {featured.map((w, i) => {
+              const layout = [
+                "md:col-span-7 md:row-span-2",
+                "md:col-span-5",
+                "md:col-span-5",
+                "md:col-span-6",
+                "md:col-span-6",
+              ][i];
+              const ratio = i === 0 ? "aspect-[4/5]" : i < 3 ? "aspect-[4/3]" : "aspect-[3/2]";
+              return (
+                <Link key={w.src} href="/works" className={`js-slideup group block ${layout}`}>
+                  <div className={`relative overflow-hidden rounded-[12px] ${ratio}`}>
+                    <Image src={w.src} alt={w.alt} fill sizes="(min-width: 768px) 55vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   </div>
-                  <div className="p-6">
-                    <h3 className="font-heading text-xl font-bold">{s.title}</h3>
-                    <p className="mt-2 text-ink/70">{s.text}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
+                  <p className="mt-4 font-display text-lg italic text-ink">{w.caption}</p>
+                  <p className="mt-1 text-xs tracking-[0.1em] text-muted">{w.title}</p>
+                </Link>
+              );
+            })}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* STATS BAND */}
-        <section className="bg-brand-blue py-14 text-white">
-          <div className="container-x grid gap-8 text-center sm:grid-cols-3">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <p className="font-heading text-3xl font-bold sm:text-4xl">{s.value}</p>
-                <p className="mt-1 text-white/70">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+      {/* SERVICES */}
+      <section id="services" className="section bg-paper">
+        <div className="container-x mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <Heading en="Services" label="What we do" />
+          <p className="js-slideup max-w-md text-ink-light">One team for the ceiling, the lighting and the feature walls, so it all fits together.</p>
+        </div>
+        <ServicesSlider />
+      </section>
 
-        {/* PROJECTS */}
-        <section id="projects" className="section">
-          <div className="container-x">
-            <SectionHeading
-              eyebrow="Our work"
-              title="Recent projects"
-              text="A look at ceilings, lighting and feature walls we have built. Tap any photo to view it full size."
-            />
-            <Gallery items={gallery} />
-          </div>
-        </section>
-
-        {/* ON SITE VIDEOS */}
-        <section className="section bg-brand-navy">
-          <div className="container-x grid items-center gap-12 lg:grid-cols-[1fr_1.2fr]">
-            <SectionHeading
-              light
-              eyebrow="On site"
-              title="See the work while it happens"
-              text="From scaffolding on the outside to the kitchen coming together inside, follow our projects as they take shape."
-            />
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { src: "/videos/site-exterior.mp4", poster: "/videos/site-exterior.jpg", label: "Exterior project" },
-                { src: "/videos/kitchen-build.mp4", poster: "/videos/kitchen-build.jpg", label: "Kitchen in progress" },
-              ].map((v) => (
-                <figure key={v.src} className="overflow-hidden rounded-2xl bg-black">
-                  <video
-                    src={v.src}
-                    poster={v.poster}
-                    className="aspect-[9/16] w-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="none"
-                    aria-label={v.label}
-                  />
-                </figure>
-              ))}
-            </div>
-          </div>
-          <div className="container-x mt-10">
-            <a href={site.socials.tiktok} target="_blank" rel="noreferrer" className="btn btn-ghost">
-              Follow @olawale_konceptz on TikTok <ArrowUpRight size={18} />
+      {/* ON SITE */}
+      <section id="onsite" className="section">
+        <div className="container-x">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <Heading en="On Site" label="Projects in progress" />
+            <a href={site.socials.tiktok} target="_blank" rel="noreferrer" className="js-slideup inline-flex items-center gap-4 self-start border-b border-ink pb-1 text-sm text-ink hover:gap-6 md:self-auto">
+              Follow on TikTok <Arrow />
             </a>
           </div>
-        </section>
+          <ul className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            {onsite.map((o) => (
+              <li key={o.src} className="js-slideup">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[12px] bg-sand">
+                  {o.type === "video" ? (
+                    <video src={o.src} poster={o.poster} className="h-full w-full object-cover" autoPlay muted loop playsInline preload="none" aria-label={o.title} />
+                  ) : (
+                    <Image src={o.src} alt={o.title} fill sizes="(min-width: 1024px) 33vw, 50vw" className="object-cover" />
+                  )}
+                </div>
+                <div className="mt-5 flex gap-2 text-[11px]">
+                  <span className="rounded-full bg-ink px-3 py-1 text-white">{o.tag}</span>
+                  <span className="rounded-full border border-ink/20 px-3 py-1 text-ink-light">{o.place}</span>
+                </div>
+                <p className="mt-3 font-display text-xl text-ink">{o.title}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
-        {/* PROCESS */}
-        <section id="process" className="section">
-          <div className="container-x">
-            <SectionHeading eyebrow="How we work" title="From first visit to handover" center />
-            <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {process.map((p, i) => (
-                <li key={p.title} className="relative rounded-2xl border border-black/5 bg-mist p-7">
-                  <span className="font-heading text-5xl font-bold text-brand-red/20">{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="mt-3 font-heading text-xl font-bold">{p.title}</h3>
-                  <p className="mt-2 text-ink/70">{p.text}</p>
+      {/* COMPANY */}
+      <section id="company" className="section bg-paper">
+        <div className="container-x grid gap-14 lg:grid-cols-2 lg:gap-24">
+          <div className="js-slideup relative aspect-[4/5] overflow-hidden rounded-[12px] lg:order-2">
+            <Image src="/images/founder.webp" alt="Portrait from the Olawale Decorations team" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover object-top" />
+          </div>
+          <div className="flex flex-col justify-center">
+            <Heading en="Company" label="About Olawale Decorations" />
+            <p className="js-slideup mt-10 font-display text-2xl leading-relaxed text-ink sm:text-3xl">
+              Design and build, by one team, from Abeokuta.
+            </p>
+            <p className="js-slideup mt-6 text-ink-light">
+              Olawale Decorations Ltd. is a registered interior and exterior design company (RC {site.rcNumber}) based in
+              Abeokuta, Ogun State. Our own crew handles every stage on site, from the first POP board to the last light
+              fitting, so the finished room matches the plan.
+            </p>
+            <ul className="js-slideup mt-10 border-t border-ink/15">
+              {[
+                ["How we work", "/#process"],
+                ["Studio", "/#studio"],
+                ["Contact", "/#contact"],
+              ].map(([label, href]) => (
+                <li key={href} className="border-b border-ink/15">
+                  <Link href={href} className="group flex items-center justify-between py-5 text-ink hover:text-taupe">
+                    {label} <Arrow className="group-hover:translate-x-1" />
+                  </Link>
                 </li>
               ))}
-            </ol>
-          </div>
-        </section>
-
-        {/* CONTACT */}
-        <section id="contact" className="section bg-mist">
-          <div className="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <SectionHeading
-                eyebrow="Contact"
-                title="Let’s talk about your space"
-                text="Tell us what you are building or renovating and we’ll get back to you with ideas and a quote."
-              />
-              <ul className="space-y-5">
-                <ContactRow icon={MapPin} label="Location" value={site.address ?? site.city} />
-                {site.phone && <ContactRow icon={Phone} label="Phone" value={site.phone} href={`tel:${site.phone.replace(/\s/g, "")}`} />}
-                {site.email && <ContactRow icon={Mail} label="Email" value={site.email} href={`mailto:${site.email}`} />}
-                <ContactRow icon={ArrowUpRight} label="TikTok" value="@olawale_konceptz" href={site.socials.tiktok} />
-              </ul>
-            </div>
-            <ContactForm />
-          </div>
-        </section>
-      </main>
-
-      {/* FOOTER */}
-      <footer className="bg-ink py-14 text-white">
-        <div className="container-x">
-          <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-            <div className="max-w-sm">
-              <Logo light />
-              <p className="mt-4 text-white/60">{site.tagline}. Ceilings, lighting, mirror walls and complete finishing in {site.city}.</p>
-            </div>
-            <nav className="grid grid-cols-2 gap-x-12 gap-y-3">
-              {nav.map((n) => (
-                <a key={n.href} href={n.href} className="text-white/70 hover:text-white">
-                  {n.label}
-                </a>
-              ))}
-            </nav>
-          </div>
-          <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-sm text-white/50 sm:flex-row sm:justify-between">
-            <p>© {new Date().getFullYear()} {site.name} RC {site.rcNumber}.</p>
-            <p>Interior & Exterior Designing</p>
+            </ul>
           </div>
         </div>
-      </footer>
-    </>
-  );
-}
 
-function ContactRow({ icon: Icon, label, value, href }) {
-  const content = (
-    <>
-      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-blue text-white">
-        <Icon size={20} />
-      </span>
-      <span>
-        <span className="block text-sm text-ink/60">{label}</span>
-        <span className="block font-semibold">{value}</span>
-      </span>
+        <div id="process" className="container-x mt-24 sm:mt-36">
+          <p className="label-en js-slideup">How we work</p>
+          <ol className="mt-8 grid gap-px overflow-hidden rounded-[12px] bg-ink/10 sm:grid-cols-2 lg:grid-cols-4">
+            {process.map((s) => (
+              <li key={s.no} className="js-slideup bg-sand p-8">
+                <p className="font-en text-4xl font-light text-taupe">{s.no}</p>
+                <p className="mt-4 font-display text-xl text-ink">{s.title}</p>
+                <p className="mt-2 text-sm text-ink-light">{s.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* STUDIO */}
+      <section id="studio" className="section">
+        <div className="container-x">
+          <Heading en="Studio" label="Visit us" />
+          <div className="js-slideup mt-14 grid overflow-hidden rounded-[12px] border border-ink/10 md:grid-cols-2">
+            <div className="relative aspect-[4/3] md:aspect-auto">
+              <Image src="/images/living-hall-6.webp" alt="" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+            </div>
+            <div className="flex flex-col justify-center p-8 sm:p-14">
+              <p className="label-en">Abeokuta</p>
+              <p className="mt-3 font-display text-3xl text-ink">Abeokuta Studio</p>
+              <dl className="mt-8 space-y-3 text-sm">
+                <div className="flex gap-6"><dt className="w-20 shrink-0 text-muted">Address</dt><dd className="text-ink">{site.address ?? site.city}</dd></div>
+                {site.phone && <div className="flex gap-6"><dt className="w-20 shrink-0 text-muted">Tel</dt><dd className="text-ink">{site.phone}</dd></div>}
+                {site.hours && <div className="flex gap-6"><dt className="w-20 shrink-0 text-muted">Hours</dt><dd className="text-ink">{site.hours}</dd></div>}
+              </dl>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address ?? "Abeokuta, Ogun State, Nigeria")}`}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-line mt-10 self-start"
+              >
+                Google Map <Arrow />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NEWS */}
+      <section id="news" className="pb-24 sm:pb-36 lg:pb-48">
+        <div className="container-x grid gap-10 md:grid-cols-[1fr_2fr]">
+          <Heading en="News" label="Latest updates" />
+          <ul className="js-slideup border-t border-ink/15">
+            {news.map((n) => (
+              <li key={n.title} className="flex flex-col gap-2 border-b border-ink/15 py-6 sm:flex-row sm:items-center sm:gap-8">
+                <span className="font-en text-sm tracking-[0.1em] text-muted">{n.date}</span>
+                <span className="w-fit rounded-full bg-sand-2 px-3 py-0.5 text-[11px] text-ink">{n.category}</span>
+                <span className="text-ink">{n.title}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <ContactBlock />
+
+      {/* SERVICE AREA */}
+      <section id="area" className="section bg-paper">
+        <div className="container-x grid gap-12 md:grid-cols-[1fr_2fr]">
+          <Heading en="Service Area" label="Where we work" />
+          <div className="js-slideup">
+            <div className="border-t border-ink/15 py-6">
+              <p className="font-display text-2xl text-ink">Ogun State</p>
+              <p className="mt-3 text-ink-light">Abeokuta and surrounding areas</p>
+            </div>
+            <div className="border-y border-ink/15 py-6">
+              <p className="font-display text-2xl text-ink">Elsewhere in Nigeria</p>
+              <p className="mt-3 text-ink-light">Planning a project in another city? Get in touch and we’ll talk it through.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
-  );
-  return (
-    <li>
-      {href ? (
-        <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="flex items-center gap-4 hover:text-brand-red">
-          {content}
-        </a>
-      ) : (
-        <div className="flex items-center gap-4">{content}</div>
-      )}
-    </li>
   );
 }
