@@ -1,18 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #202020;
-  --color-ink-dark: #0f0f0f;
-  --color-ink-light: #4a4a4a;
-  --color-body: #333333;
-  --color-muted: #757575;
-  --color-sand: #f2ede7;
-  --color-sand-2: #e9e1da;
-  --color-stone: #d8d0c5;
-  --color-taupe: #ad8a72;
-  --color-taupe-dark: #5f433e;
-  --color-taupe-light: #d6b996;
-  --color-olive: #6b705c;
+  /* Soft shades built around the logo's blue (#1f2c86) and red (#e0352b) */
+  --color-ink: #1f2645;        /* blue-charcoal, text only */
+  --color-ink-light: #4b5478;
+  --color-body: #3a4263;
+  --color-muted: #7c84a3;
+  --color-indigo: #4c5db0;     /* soft royal blue: buttons, tags */
+  --color-indigo-dark: #3c4a94;
+  --color-periwinkle: #8a97d4; /* thin lines, progress */
+  --color-mist: #eef2fa;       /* pale blue sections */
+  --color-powder: #e4e9f6;     /* footer */
+  --color-blush: #fbefec;      /* pale rose sections */
+  --color-rose: #e0786c;       /* coral rose: numbers, highlights, hovers */
+  --color-rose-dark: #c4554a;  /* small labels (readable on light backgrounds) */
+  --color-rose-light: #f4c3ba;
   --color-brand-blue: #1f2c86;
   --color-brand-red: #e0352b;
   --font-display: var(--font-cardo), Georgia, serif;
@@ -32,6 +34,11 @@ body {
   @apply bg-white font-sans text-[15px] leading-[1.9] tracking-[0.04em] text-body antialiased sm:text-base;
 }
 
+::selection {
+  background: var(--color-rose-light);
+  color: var(--color-ink);
+}
+
 a, button, svg {
   transition: all 0.4s ease-out;
 }
@@ -44,16 +51,23 @@ a, button, svg {
   @apply py-24 sm:py-36 lg:py-48;
 }
 
-/* Beige section with paper texture, as in the reference */
+/* Pale blue (paper) and pale rose (paper-2) sections with a light paper texture */
 @utility bg-paper {
-  background-color: var(--color-sand);
+  background-color: var(--color-mist);
+  background-image: url("/textures/paper.png");
+  background-size: 256px;
+  background-blend-mode: multiply;
+}
+
+@utility bg-paper-3 {
+  background-color: var(--color-powder);
   background-image: url("/textures/paper.png");
   background-size: 256px;
   background-blend-mode: multiply;
 }
 
 @utility bg-paper-2 {
-  background-color: var(--color-sand-2);
+  background-color: var(--color-blush);
   background-image: url("/textures/paper.png");
   background-size: 256px;
   background-blend-mode: multiply;
@@ -61,7 +75,7 @@ a, button, svg {
 
 /* Small English label above headings */
 @utility label-en {
-  @apply font-en text-xs font-medium uppercase tracking-[0.25em] text-taupe;
+  @apply font-en text-xs font-medium uppercase tracking-[0.25em] text-rose-dark;
 }
 
 /* Rounded pill buttons */
@@ -70,15 +84,15 @@ a, button, svg {
 }
 
 @utility btn-dark {
-  @apply border-ink bg-ink text-white hover:bg-transparent hover:text-ink;
+  @apply border-indigo bg-indigo text-white hover:border-rose hover:bg-rose;
 }
 
 @utility btn-line {
-  @apply border-ink/30 text-ink hover:border-ink hover:bg-ink hover:text-white;
+  @apply border-indigo/35 text-ink hover:border-indigo hover:bg-indigo hover:text-white;
 }
 
 @utility btn-light {
-  @apply border-white/60 text-white hover:bg-white hover:text-ink;
+  @apply border-white/60 text-white hover:bg-white hover:text-indigo;
 }
 
 /* Scroll reveal: fade + slide up over 0.6s */

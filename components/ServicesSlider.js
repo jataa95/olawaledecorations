@@ -30,7 +30,7 @@ export default function ServicesSlider() {
             key={s.category}
             type="button"
             onClick={() => jump(i)}
-            className="rounded-full border border-ink/15 bg-white px-5 py-2 text-sm text-ink hover:border-ink hover:bg-ink hover:text-white"
+            className="rounded-full border border-ink/15 bg-white px-5 py-2 text-sm text-ink hover:border-indigo hover:bg-indigo hover:text-white"
           >
             {s.category}
           </button>
@@ -68,7 +68,7 @@ export default function ServicesSlider() {
             type="button"
             onClick={() => go(d)}
             aria-label={d < 0 ? "Previous" : "Next"}
-            className="flex h-14 w-14 items-center justify-center rounded-full border border-ink/20 text-ink hover:border-ink hover:bg-ink hover:text-white"
+            className="flex h-14 w-14 items-center justify-center rounded-full border border-ink/20 text-ink hover:border-indigo hover:bg-indigo hover:text-white"
           >
             <Arrow className={d < 0 ? "rotate-180" : ""} />
           </button>

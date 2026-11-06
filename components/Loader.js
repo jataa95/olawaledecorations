@@ -49,8 +49,8 @@ export default function Loader() {
       <p className="font-en text-xs uppercase tracking-[0.3em] text-ink">
         Loading <span className="mx-2 text-muted">...</span> <span className="inline-block w-10 text-right">{pct}%</span>
       </p>
-      <div className="h-px w-40 bg-ink/10">
-        <div className="h-full bg-ink transition-[width] duration-200" style={{ width: `${pct}%` }} />
+      <div className="h-px w-40 bg-periwinkle/30">
+        <div className="h-full bg-indigo transition-[width] duration-200" style={{ width: `${pct}%` }} />
       </div>
     </div>
   );

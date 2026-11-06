@@ -53,7 +53,7 @@ export default function Header() {
             </div>
             <Link
               href="/#contact"
-              className="hidden h-full items-center bg-ink px-8 text-sm tracking-[0.1em] text-white hover:bg-taupe-dark md:flex"
+              className="hidden h-full items-center bg-indigo px-8 text-sm tracking-[0.1em] text-white hover:bg-rose md:flex"
             >
               Book a site visit
             </Link>
@@ -64,7 +64,7 @@ export default function Header() {
               aria-label={open ? "Close menu" : "Open menu"}
               className={`flex h-full w-20 flex-col items-center justify-center gap-2 sm:w-24 ${
                 light ? "text-white" : "text-ink"
-              } ${open ? "bg-sand" : ""}`}
+              } ${open ? "bg-mist" : ""}`}
             >
               <span className="relative block h-2 w-8">
                 <span className={`absolute left-0 h-px w-full bg-current transition-all duration-400 ${open ? "top-1 rotate-[20deg]" : "top-0"}`} />
@@ -102,7 +102,7 @@ export default function Header() {
                 <ul className="mt-4 space-y-3">
                   {group.links.map((l) => (
                     <li key={l.href}>
-                      <Link href={l.href} onClick={() => setOpen(false)} className="group flex items-center justify-between text-ink hover:text-taupe">
+                      <Link href={l.href} onClick={() => setOpen(false)} className="group flex items-center justify-between text-ink hover:text-rose">
                         {l.label}
                         <Arrow className="opacity-40 group-hover:translate-x-1 group-hover:opacity-100" />
                       </Link>

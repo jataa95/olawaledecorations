@@ -53,7 +53,7 @@ export default function Home() {
                   <Image src={p.image} alt="" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
                 </div>
                 <div className="js-slideup">
-                  <p className="font-en text-6xl font-light text-taupe sm:text-7xl">{p.no}</p>
+                  <p className="font-en text-6xl font-light text-rose sm:text-7xl">{p.no}</p>
                   <h3 className="mt-4 font-display text-3xl text-ink sm:text-4xl">{p.title}</h3>
                   <p className="mt-6 text-ink-light">{p.text}</p>
                 </div>
@@ -108,7 +108,7 @@ export default function Home() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="section bg-paper">
+      <section id="services" className="section bg-paper-2">
         <div className="container-x mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <Heading en="Services" label="What we do" />
           <p className="js-slideup max-w-md text-ink-light">One team for the ceiling, the lighting and the feature walls, so it all fits together.</p>
@@ -128,7 +128,7 @@ export default function Home() {
           <ul className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {onsite.map((o) => (
               <li key={o.src} className="js-slideup">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-[12px] bg-sand">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[12px] bg-mist">
                   {o.type === "video" ? (
                     <video src={o.src} poster={o.poster} className="h-full w-full object-cover" autoPlay muted loop playsInline preload="none" aria-label={o.title} />
                   ) : (
@@ -136,7 +136,7 @@ export default function Home() {
                   )}
                 </div>
                 <div className="mt-5 flex gap-2 text-[11px]">
-                  <span className="rounded-full bg-ink px-3 py-1 text-white">{o.tag}</span>
+                  <span className="rounded-full bg-indigo px-3 py-1 text-white">{o.tag}</span>
                   <span className="rounded-full border border-ink/20 px-3 py-1 text-ink-light">{o.place}</span>
                 </div>
                 <p className="mt-3 font-display text-xl text-ink">{o.title}</p>
@@ -169,7 +169,7 @@ export default function Home() {
                 ["Contact", "/#contact"],
               ].map(([label, href]) => (
                 <li key={href} className="border-b border-ink/15">
-                  <Link href={href} className="group flex items-center justify-between py-5 text-ink hover:text-taupe">
+                  <Link href={href} className="group flex items-center justify-between py-5 text-ink hover:text-rose">
                     {label} <Arrow className="group-hover:translate-x-1" />
                   </Link>
                 </li>
@@ -180,10 +180,10 @@ export default function Home() {
 
         <div id="process" className="container-x mt-24 sm:mt-36">
           <p className="label-en js-slideup">How we work</p>
-          <ol className="mt-8 grid gap-px overflow-hidden rounded-[12px] bg-ink/10 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-8 grid gap-px overflow-hidden rounded-[12px] bg-periwinkle/30 sm:grid-cols-2 lg:grid-cols-4">
             {process.map((s) => (
-              <li key={s.no} className="js-slideup bg-sand p-8">
-                <p className="font-en text-4xl font-light text-taupe">{s.no}</p>
+              <li key={s.no} className="js-slideup bg-white/80 p-8">
+                <p className="font-en text-4xl font-light text-rose">{s.no}</p>
                 <p className="mt-4 font-display text-xl text-ink">{s.title}</p>
                 <p className="mt-2 text-sm text-ink-light">{s.text}</p>
               </li>
@@ -229,7 +229,7 @@ export default function Home() {
             {news.map((n) => (
               <li key={n.title} className="flex flex-col gap-2 border-b border-ink/15 py-6 sm:flex-row sm:items-center sm:gap-8">
                 <span className="font-en text-sm tracking-[0.1em] text-muted">{n.date}</span>
-                <span className="w-fit rounded-full bg-sand-2 px-3 py-0.5 text-[11px] text-ink">{n.category}</span>
+                <span className="w-fit rounded-full bg-rose-light/50 px-3 py-0.5 text-[11px] text-ink">{n.category}</span>
                 <span className="text-ink">{n.title}</span>
               </li>
             ))}
@@ -240,7 +240,7 @@ export default function Home() {
       <ContactBlock />
 
       {/* SERVICE AREA */}
-      <section id="area" className="section bg-paper">
+      <section id="area" className="section bg-paper-2">
         <div className="container-x grid gap-12 md:grid-cols-[1fr_2fr]">
           <Heading en="Service Area" label="Where we work" />
           <div className="js-slideup">

@@ -11,7 +11,7 @@ export default function ContactBlock() {
   return (
     <section id="contact" className="relative overflow-hidden py-28 text-white sm:py-40">
       <Image src="/images/living-hall-1.webp" alt="" fill sizes="100vw" className="object-cover" />
-      <div className="absolute inset-0 bg-ink-dark/75" />
+      <div className="absolute inset-0 bg-gradient-to-br from-ink/85 via-indigo/65 to-rose/45" />
       <div className="container-x relative grid gap-14 lg:grid-cols-2 lg:items-end">
         <div className="js-slideup">
           <h2 className="font-display text-5xl leading-none sm:text-7xl lg:text-[5.5rem]">Contact Us</h2>
@@ -24,7 +24,7 @@ export default function ContactBlock() {
           <Link href={primary} target={primary.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="btn btn-light h-20 px-8 text-base">
             Book a site visit <Arrow />
           </Link>
-          <Link href={primary} target={primary.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="btn h-20 border-white bg-white px-8 text-base text-ink hover:bg-transparent hover:text-white">
+          <Link href={primary} target={primary.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="btn h-20 border-white bg-white px-8 text-base text-ink hover:border-rose-light hover:bg-rose-light hover:text-ink">
             Get a free quote <Arrow />
           </Link>
           {site.phone ? (
@@ -34,7 +34,7 @@ export default function ContactBlock() {
           ) : (
             <p className="mt-2 text-center text-sm text-white/70">
               For now, message us on{" "}
-              <a href={site.socials.tiktok} target="_blank" rel="noreferrer" className="underline hover:text-taupe-light">TikTok @olawale_konceptz</a>.
+              <a href={site.socials.tiktok} target="_blank" rel="noreferrer" className="underline hover:text-rose-light">TikTok @olawale_konceptz</a>.
             </p>
           )}
         </div>

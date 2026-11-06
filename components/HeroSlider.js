@@ -36,7 +36,7 @@ export default function HeroSlider() {
           ))}
         </div>
       ))}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-ink/30" />
       <div className="absolute bottom-8 right-5 z-10 flex gap-2 sm:right-10">
         {heroSlides.map((_, s) => (
           <span key={s} className="h-px w-10 overflow-hidden bg-white/30">
